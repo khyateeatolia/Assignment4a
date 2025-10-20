@@ -256,9 +256,9 @@ This section highlights key technical breakthroughs and design decisions that em
 *Location: [@](../../context/design/prompts/11_messagingthread_new_implementation.prompt.md/20251019_204030.46f4a496.md)*
 **Moment**: Removed complex seller-buyer restrictions in favor of general two-user communication. This design evolution eliminated enforcement complexity while providing greater user flexibility. The implementation uses unique compound indexes to prevent duplicate threads.
 
-### 5. **LikertSurvey Test Format Adoption**
-*Location: [@](../../context/design/prompts/02_rewrite_tests.prompt.md/20251019_135544.2a28159e.md)*
-**Moment**: Transitioned from traditional unit tests to principle-based LikertSurvey format. This testing approach provides comprehensive coverage across 6 principles per concept (correctness, robustness, performance, security, integration, maintainability) with 3-5 variant tests each.
+### 5. **ItemListing Authorization Model Evolution**
+*Location: [@](../../context/design/prompts/07_itemlisting_implementation.prompt.md/20251019_163509.15ced551.md)*
+**Moment**: Redesigned ItemListing authorization from simple ownership checks to comprehensive role-based access control. The concept now validates user permissions for all operations (create, update, withdraw, sell) while maintaining data integrity. This design change ensures only authorized users can modify listings while supporting marketplace workflows.
 
 ### 6. **Concurrent Operations Testing with Race Condition Handling**
 *Location: [@](../../context/design/prompts/08_itemlisting_concurrency_tests.prompt.md/20251019_171045.a94fd7c6.md)*
@@ -268,17 +268,17 @@ This section highlights key technical breakthroughs and design decisions that em
 *Location: [@](../../src/concepts/Feed/FeedConcept.ts:34-39)*
 **Moment**: Implemented automatic feed updates through event listeners. The system maintains real-time consistency between ItemListing changes and Feed display without direct coupling, demonstrating proper event-driven architecture.
 
-### 8. **Comprehensive Input Validation with Custom Error Classes**
-*Location: [@](../../src/concepts/ItemListing/ItemListingConcept.ts:150-205)*
-**Moment**: Built extensive validation system with specific error types for different failure scenarios. The validation includes length limits, URL validation using `URL.canParse()`, and comprehensive field checking. This approach provides clear error messages while preventing data corruption.
-
-### 9. **Database-First Bidding Implementation**
+### 8. **Bidding Concept State Management Redesign**
 *Location: [@](../../context/design/prompts/09_bidding_implementation.prompt.md/20251019_172114.dcf82b8d.md)*
-**Moment**: Evolved from in-memory Map-based design to MongoDB collection with native indexing. This change eliminated data synchronization issues while providing better performance through MongoDB's built-in optimization capabilities.
+**Moment**: Evolved Bidding concept from in-memory state management to persistent database collections. This fundamental design change eliminated data loss risks while enabling proper bid tracking across user sessions. The concept now maintains complete bid history and supports complex marketplace scenarios with multiple concurrent bidders.
 
-### 10. **Test Results Immutable Snapshots**
-*Location: [@](../../context/complete_test_results.txt/20251019_225334.65545494.md)*
-**Moment**: Comprehensive test suite execution showing 100% pass rate across all concepts. The test results demonstrate 56+ individual scenarios covering edge cases, concurrency, error handling, and integration testing with total execution time of 14 seconds.
+### 9. **Feed Concept Architecture: Denormalized vs Normalized Design**
+*Location: [@](../../context/design/prompts/14_feed_implementation.prompt.md/20251019_213332.a4d24f2a.md)*
+**Moment**: Chose denormalized architecture for Feed concept over normalized approach. This design decision prioritizes query performance and user experience over storage efficiency. The Feed maintains complete listing data locally, enabling fast filtering and sorting operations while staying synchronized through event-driven updates from ItemListing changes.
+
+### 10. **MessagingThread Concept Scope Expansion**
+*Location: [@](../../context/design/prompts/11_messagingthread_new_implementation.prompt.md/20251019_204030.46f4a496.md)*
+**Moment**: Expanded MessagingThread concept from seller-buyer only communication to general two-user messaging. This design evolution removed artificial restrictions while maintaining thread uniqueness through compound indexes. The concept now supports broader user interaction patterns while preserving the core requirement of private, two-person conversations.
 
 ---
 
