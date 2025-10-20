@@ -1,0 +1,68 @@
+# Generate Tests and Fake Data for SSO-based UserAccount Concept
+
+## Role
+You are a senior Deno + TypeScript + MongoDB engineer. I need you to create comprehensive tests for the new SSO-based UserAccount concept implementation, following the LikertSurvey test format, and generate appropriate fake test data.
+
+## Context
+Based on the updated UserAccount specification: [@](context/design/prompts/03_updated_useraccount_spec.prompt.md/steps/response.ef038d38.md)
+
+## Current Implementation
+The new SSO-based UserAccount concept is implemented: [@](../../src/concepts/UserAccount/UserAccountConcept.ts)
+
+## Example Test Format
+I want the tests to follow the LikertSurvey format: [@](../../src/concepts/LikertSurvey/LikertSurveyConcept.test.ts)
+
+## New UserAccount API
+The updated UserAccount concept has these actions:
+- `register_or_login(ssoProvider, ssoToken, ipAddress, userAgent) -> { userId, sessionId }`
+- `logout(sessionId) -> void`
+- `change_avatar(userId, newAvatar) -> void`
+- `change_bio(userId, bio) -> void`
+- `change_password(userId, currentPassword, newPassword) -> void`
+- `delete_account(userId) -> void`
+- `view_profile(userId) -> ProfileView`
+- `validate_session(sessionId) -> UserId`
+
+## Test Requirements
+
+### Test Format
+- Use `Deno.test()` with descriptive names (like "Principle: User registers via SSO, logs in, manages profile, logs out")
+- Follow the LikertSurvey pattern of one comprehensive test per principle
+- Use `testDb()` from `@utils/database.ts` for database setup
+- Use `try/finally` blocks for cleanup
+- Use `assertExists`, `assertEquals`, `assertNotEquals` from `jsr:@std/assert`
+
+### Test Principles to Cover
+1. **SSO Registration and Login Flow**: First-time SSO login → Account creation → Profile setup
+2. **Session Management**: Login → Session validation → Logout → Session invalidation
+3. **Profile Management**: Avatar editing, bio updates, password changes
+4. **Account Lifecycle**: Registration → Usage → Deletion
+5. **Error Handling**: Invalid SSO tokens, expired sessions, invalid credentials
+6. **Security**: Session validation, account deactivation, unauthorized access
+
+### Fake Data Requirements
+Generate comprehensive fake test data including:
+- **SSO Providers**: Different university SSO systems
+- **SSO Tokens**: Valid and invalid tokens for testing
+- **User Data**: Various user profiles with different attributes
+- **Session Data**: Active and expired sessions
+- **Edge Cases**: Duplicate usernames, invalid emails, etc.
+
+### Output Format
+- **Assumptions**: Any assumptions about the test approach
+- **Complete test file**: Full TypeScript test file following LikertSurvey format
+- **Fake test data file**: Comprehensive test data for all scenarios
+- **Test data usage**: How to integrate the fake test data
+- **Cleanup strategy**: Database and resource cleanup approach
+
+## Constraints
+- Must use `testDb()` from `@utils/database.ts`
+- Must follow the exact LikertSurvey test structure
+- Must test complete workflows, not individual methods
+- Must use the new SSO-based UserAccount concept implementation
+- Must include proper error assertions
+- Must handle MongoDB operations correctly
+- Must test session management and SSO integration
+
+## Expected Output
+A complete test file that demonstrates the SSO-based UserAccount concept through operational principles, following the LikertSurvey format exactly, along with comprehensive fake test data.

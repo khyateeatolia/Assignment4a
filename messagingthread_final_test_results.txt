@@ -1,0 +1,75 @@
+[0m[38;5;245mrunning 3 tests from ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m
+Setup database and concept instance ... [0m[32mok[0m [0m[38;5;245m(671ms)[0m
+Teardown database connection ...
+[0m[38;5;245m------- output -------[0m
+Test database cleanup handled by shared utility.
+[0m[38;5;245m----- output end -----[0m
+Teardown database connection ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+MessagingThreadConcept Tests ...
+  Correctness: start_thread ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should create a general thread between two users ... [0m[32mok[0m [0m[38;5;245m(84ms)[0m
+    should create a listing-specific thread between two users ... [0m[32mok[0m [0m[38;5;245m(66ms)[0m
+    should handle participants order consistently for general threads ... [0m[32mok[0m [0m[38;5;245m(82ms)[0m
+    should handle participants order consistently for listing-specific threads ... [0m[32mok[0m [0m[38;5;245m(77ms)[0m
+  Correctness: start_thread ... [0m[32mok[0m [0m[38;5;245m(490ms)[0m
+  Correctness: post_message ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should allow a participant to post a message ... [0m[32mok[0m [0m[38;5;245m(130ms)[0m
+    should allow another participant to post a message ... [0m[32mok[0m [0m[38;5;245m(144ms)[0m
+    should allow messages with attachments ... [0m[32mok[0m [0m[38;5;245m(81ms)[0m
+  Correctness: post_message ... [0m[32mok[0m [0m[38;5;245m(451ms)[0m
+  Correctness: flag_message ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should flag an existing message ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+    should allow flagging without a flaggedBy user ... [0m[32mok[0m [0m[38;5;245m(64ms)[0m
+  Correctness: flag_message ... [0m[32mok[0m [0m[38;5;245m(293ms)[0m
+  Robustness: Error Handling ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    start_thread should throw InvalidInputError for invalid IDs ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+    start_thread should throw SelfCommunicationError if initiator is recipient ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+    start_thread should throw DuplicateThreadError for existing threads ... [0m[32mok[0m [0m[38;5;245m(29ms)[0m
+    post_message should throw InvalidInputError for invalid inputs ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+    post_message should throw ThreadNotFoundError for non-existent thread ... [0m[32mok[0m [0m[38;5;245m(21ms)[0m
+    post_message should throw UnauthorizedActionError if user is not a participant ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+    flag_message should throw InvalidInputError for invalid inputs ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+    flag_message should throw ThreadNotFoundError for non-existent thread ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+    flag_message should throw MessageNotFoundError for non-existent message ... [0m[32mok[0m [0m[38;5;245m(38ms)[0m
+    flag_message should throw MessageNotFoundError if message not in specified thread ... [0m[32mok[0m [0m[38;5;245m(170ms)[0m
+  Robustness: Error Handling ... [0m[32mok[0m [0m[38;5;245m(492ms)[0m
+  Performance: Basic checks (conceptual) ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should create 100 threads reasonably fast ...
+[0m[38;5;245m------- output -------[0m
+Created 100 threads in 2013.34ms
+[0m[38;5;245m----- output end -----[0m
+    should create 100 threads reasonably fast ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+    should post 100 messages to a thread reasonably fast ...
+[0m[38;5;245m------- output -------[0m
+Posted 100 messages in 2821.64ms
+[0m[38;5;245m----- output end -----[0m
+    should post 100 messages to a thread reasonably fast ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+  Performance: Basic checks (conceptual) ... [0m[32mok[0m [0m[38;5;245m(4s)[0m
+  Usability & Maintainability: Code structure and helpers ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should retrieve thread details correctly using get_thread ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+    should retrieve message details correctly using get_message ... [0m[32mok[0m [0m[38;5;245m(140ms)[0m
+    should retrieve messages in correct order (oldest first) ... [0m[32mok[0m [0m[38;5;245m(283ms)[0m
+    should support message pagination (limit and skip) ... [0m[32mok[0m [0m[38;5;245m(825ms)[0m
+  Usability & Maintainability: Code structure and helpers ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+MessagingThreadConcept Tests ... [0m[32mok[0m [0m[38;5;245m(8s)[0m
+
+[0m[32mok[0m | 3 passed (31 steps) | 0 failed [0m[38;5;245m(8s)[0m
+

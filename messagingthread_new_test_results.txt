@@ -1,0 +1,167 @@
+[0m[38;5;245mrunning 3 tests from ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m
+Setup database and concept instance ... [0m[32mok[0m [0m[38;5;245m(558ms)[0m
+Teardown database connection ...
+[0m[38;5;245m------- output -------[0m
+Test database cleanup handled by shared utility.
+[0m[38;5;245m----- output end -----[0m
+Teardown database connection ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+MessagingThreadConcept Tests ...
+  Correctness: start_thread ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should create a general thread between two users ... [0m[32mok[0m [0m[38;5;245m(89ms)[0m
+    should create a listing-specific thread between two users ... [0m[32mok[0m [0m[38;5;245m(61ms)[0m
+    should handle participants order consistently for general threads ... [0m[31mFAILED[0m [0m[38;5;245m(127ms)[0m
+    should handle participants order consistently for listing-specific threads ... [0m[31mFAILED[0m [0m[38;5;245m(22ms)[0m
+  Correctness: start_thread ... [0m[31mFAILED[0m (due to 2 failed steps) [0m[38;5;245m(350ms)[0m
+  Correctness: post_message ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should allow a participant to post a message ... [0m[32mok[0m [0m[38;5;245m(118ms)[0m
+    should allow another participant to post a message ... [0m[31mFAILED[0m [0m[38;5;245m(169ms)[0m
+    should allow messages with attachments ... [0m[32mok[0m [0m[38;5;245m(83ms)[0m
+  Correctness: post_message ... [0m[31mFAILED[0m (due to 1 failed step) [0m[38;5;245m(455ms)[0m
+  Correctness: flag_message ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should flag an existing message ... [0m[32mok[0m [0m[38;5;245m(67ms)[0m
+    should allow flagging without a flaggedBy user ... [0m[31mFAILED[0m [0m[38;5;245m(67ms)[0m
+  Correctness: flag_message ... [0m[31mFAILED[0m (due to 1 failed step) [0m[38;5;245m(288ms)[0m
+  Robustness: Error Handling ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    start_thread should throw InvalidInputError for invalid IDs ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+    start_thread should throw SelfCommunicationError if initiator is recipient ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+    start_thread should throw DuplicateThreadError for existing threads ... [0m[31mFAILED[0m [0m[38;5;245m(43ms)[0m
+    post_message should throw InvalidInputError for invalid inputs ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+    post_message should throw ThreadNotFoundError for non-existent thread ... [0m[32mok[0m [0m[38;5;245m(19ms)[0m
+    post_message should throw UnauthorizedActionError if user is not a participant ... [0m[32mok[0m [0m[38;5;245m(21ms)[0m
+    flag_message should throw InvalidInputError for invalid inputs ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+    flag_message should throw ThreadNotFoundError for non-existent thread ... [0m[32mok[0m [0m[38;5;245m(19ms)[0m
+    flag_message should throw MessageNotFoundError for non-existent message ... [0m[32mok[0m [0m[38;5;245m(39ms)[0m
+    flag_message should throw MessageNotFoundError if message not in specified thread ... [0m[32mok[0m [0m[38;5;245m(152ms)[0m
+  Robustness: Error Handling ... [0m[31mFAILED[0m (due to 1 failed step) [0m[38;5;245m(450ms)[0m
+  Performance: Basic checks (conceptual) ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should create 100 threads reasonably fast ...
+[0m[38;5;245m------- output -------[0m
+Created 100 threads in 2119.01ms
+[0m[38;5;245m----- output end -----[0m
+    should create 100 threads reasonably fast ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+    should post 100 messages to a thread reasonably fast ...
+[0m[38;5;245m------- output -------[0m
+Posted 100 messages in 3006.28ms
+[0m[38;5;245m----- output end -----[0m
+    should post 100 messages to a thread reasonably fast ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+  Performance: Basic checks (conceptual) ... [0m[32mok[0m [0m[38;5;245m(5s)[0m
+  Usability & Maintainability: Code structure and helpers ...
+[0m[38;5;245m------- output -------[0m
+Cleared collections: messaging_threads, messaging_messages
+[0m[38;5;245m----- output end -----[0m
+    should retrieve thread details correctly using get_thread ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+    should retrieve message details correctly using get_message ... [0m[32mok[0m [0m[38;5;245m(138ms)[0m
+    should retrieve messages in correct order (oldest first) ... [0m[32mok[0m [0m[38;5;245m(304ms)[0m
+    should support message pagination (limit and skip) ... [0m[32mok[0m [0m[38;5;245m(808ms)[0m
+  Usability & Maintainability: Code structure and helpers ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+MessagingThreadConcept Tests ... [0m[31mFAILED[0m (due to 4 failed steps) [0m[38;5;245m(8s)[0m
+
+[0m[1m[37m[41m ERRORS [0m
+
+MessagingThreadConcept Tests ... Correctness: start_thread ... should handle participants order consistently for general threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:83:18[0m
+[0m[1m[31merror[0m: AssertionError: Expected function to reject.
+    throw new AssertionError(
+[0m[31m          ^[0m
+    at [0m[1m[3massertRejects[0m ([0m[36mhttps://deno.land/std@0.208.0/assert/assert_rejects.ts[0m:[0m[33m139[0m:[0m[33m11[0m)
+    at [0m[1m[3meventLoopTick[0m ([0m[36mext:core/01_core.js[0m:[0m[33m179[0m:[0m[33m7[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m89[0m:[0m[33m7[0m
+    at async [0m[1m[3minnerWrapped[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m181[0m:[0m[33m5[0m)
+    at async [0m[1m[3mexitSanitizer[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m97[0m:[0m[33m27[0m)
+    at async [0m[1m[3mObject.outerWrapped [as fn][0m ([0m[36mext:cli/40_test.js[0m:[0m[33m124[0m:[0m[33m14[0m)
+    at async [0m[1m[3mTestContext.step[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m511[0m:[0m[33m22[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m83[0m:[0m[33m5[0m
+
+MessagingThreadConcept Tests ... Correctness: start_thread ... should handle participants order consistently for listing-specific threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:96:18[0m
+[0m[1m[31merror[0m: DuplicateThreadError: A thread already exists between 68f588cd42e2ab1832f5ce66 and 68f588cd42e2ab1832f5ce68 for listing 68f588cd42e2ab1832f5ce69.
+      throw new DuplicateThreadError(initiator, recipient, listingId);
+[0m[31m            ^[0m
+    at [0m[1m[3mMessagingThreadConcept.start_thread[0m ([0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.ts[0m:[0m[33m118[0m:[0m[33m13[0m)
+    at [0m[1m[3meventLoopTick[0m ([0m[36mext:core/01_core.js[0m:[0m[33m179[0m:[0m[33m7[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m97[0m:[0m[33m25[0m
+    at async [0m[1m[3minnerWrapped[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m181[0m:[0m[33m5[0m)
+    at async [0m[1m[3mexitSanitizer[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m97[0m:[0m[33m27[0m)
+    at async [0m[1m[3mObject.outerWrapped [as fn][0m ([0m[36mext:cli/40_test.js[0m:[0m[33m124[0m:[0m[33m14[0m)
+    at async [0m[1m[3mTestContext.step[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m511[0m:[0m[33m22[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m96[0m:[0m[33m5[0m
+
+MessagingThreadConcept Tests ... Correctness: post_message ... should allow another participant to post a message [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:146:18[0m
+[0m[1m[31merror[0m: AssertionError: Values are not equal.
+
+
+    [90m[1m[Diff][22m[39m [31m[1mActual[22m[39m / [32m[1mExpected[22m[39m
+
+
+[31m[1m-   3[22m[39m
+[32m[1m+   2[22m[39m
+
+  throw new AssertionError(message);
+[0m[31m        ^[0m
+    at [0m[1m[3massertEquals[0m ([0m[36mhttps://deno.land/std@0.208.0/assert/assert_equals.ts[0m:[0m[33m53[0m:[0m[33m9[0m)
+    at [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m157[0m:[0m[33m7[0m
+    at [0m[1m[3meventLoopTick[0m ([0m[36mext:core/01_core.js[0m:[0m[33m179[0m:[0m[33m7[0m)
+    at async [0m[1m[3minnerWrapped[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m181[0m:[0m[33m5[0m)
+    at async [0m[1m[3mexitSanitizer[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m97[0m:[0m[33m27[0m)
+    at async [0m[1m[3mObject.outerWrapped [as fn][0m ([0m[36mext:cli/40_test.js[0m:[0m[33m124[0m:[0m[33m14[0m)
+    at async [0m[1m[3mTestContext.step[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m511[0m:[0m[33m22[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m146[0m:[0m[33m5[0m
+
+MessagingThreadConcept Tests ... Correctness: flag_message ... should allow flagging without a flaggedBy user [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:206:18[0m
+[0m[1m[31merror[0m: AssertionError: Values are not equal.
+
+
+    [90m[1m[Diff][22m[39m [31m[1mActual[22m[39m / [32m[1mExpected[22m[39m
+
+
+[31m[1m-   2[22m[39m
+[32m[1m+   1[22m[39m
+
+  throw new AssertionError(message);
+[0m[31m        ^[0m
+    at [0m[1m[3massertEquals[0m ([0m[36mhttps://deno.land/std@0.208.0/assert/assert_equals.ts[0m:[0m[33m53[0m:[0m[33m9[0m)
+    at [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m215[0m:[0m[33m7[0m
+    at [0m[1m[3meventLoopTick[0m ([0m[36mext:core/01_core.js[0m:[0m[33m179[0m:[0m[33m7[0m)
+    at async [0m[1m[3minnerWrapped[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m181[0m:[0m[33m5[0m)
+    at async [0m[1m[3mexitSanitizer[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m97[0m:[0m[33m27[0m)
+    at async [0m[1m[3mObject.outerWrapped [as fn][0m ([0m[36mext:cli/40_test.js[0m:[0m[33m124[0m:[0m[33m14[0m)
+    at async [0m[1m[3mTestContext.step[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m511[0m:[0m[33m22[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m206[0m:[0m[33m5[0m
+
+MessagingThreadConcept Tests ... Robustness: Error Handling ... start_thread should throw DuplicateThreadError for existing threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:258:18[0m
+[0m[1m[31merror[0m: AssertionError: Expected function to reject.
+    throw new AssertionError(
+[0m[31m          ^[0m
+    at [0m[1m[3massertRejects[0m ([0m[36mhttps://deno.land/std@0.208.0/assert/assert_rejects.ts[0m:[0m[33m139[0m:[0m[33m11[0m)
+    at [0m[1m[3meventLoopTick[0m ([0m[36mext:core/01_core.js[0m:[0m[33m179[0m:[0m[33m7[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m259[0m:[0m[33m7[0m
+    at async [0m[1m[3minnerWrapped[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m181[0m:[0m[33m5[0m)
+    at async [0m[1m[3mexitSanitizer[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m97[0m:[0m[33m27[0m)
+    at async [0m[1m[3mObject.outerWrapped [as fn][0m ([0m[36mext:cli/40_test.js[0m:[0m[33m124[0m:[0m[33m14[0m)
+    at async [0m[1m[3mTestContext.step[0m ([0m[36mext:cli/40_test.js[0m:[0m[33m511[0m:[0m[33m22[0m)
+    at async [0m[36mfile:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m:[0m[33m258[0m:[0m[33m5[0m
+
+[0m[1m[37m[41m FAILURES [0m
+
+MessagingThreadConcept Tests ... Correctness: start_thread ... should handle participants order consistently for general threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:83:18[0m
+MessagingThreadConcept Tests ... Correctness: start_thread ... should handle participants order consistently for listing-specific threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:96:18[0m
+MessagingThreadConcept Tests ... Correctness: post_message ... should allow another participant to post a message [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:146:18[0m
+MessagingThreadConcept Tests ... Correctness: flag_message ... should allow flagging without a flaggedBy user [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:206:18[0m
+MessagingThreadConcept Tests ... Robustness: Error Handling ... start_thread should throw DuplicateThreadError for existing threads [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:258:18[0m
+
+[0m[31mFAILED[0m | 2 passed (22 steps) | 1 failed (9 steps) [0m[38;5;245m(8s)[0m
+
+[0m[1m[31merror[0m: Test failed

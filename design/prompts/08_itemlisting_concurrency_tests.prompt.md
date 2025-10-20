@@ -1,0 +1,66 @@
+# ItemListing Concurrency and Advanced Test Cases
+
+## Project Context
+You are working on a student marketplace system called "SwapIt" (CampusCloset) that enables verified users to list items, place bids, communicate through threads, and browse available listings. This is part of Assignment 4a for a Software Design course.
+
+## Current Status
+- **ItemListing concept**: Fully implemented with comprehensive test suite
+- **Database**: MongoDB Atlas with npm:mongodb driver
+- **Testing Framework**: Deno with principle-based test structure
+- **Current Test Coverage**: 6 principles with 34 test scenarios
+
+## Request
+Please add the following **advanced test cases** to the existing ItemListing test suite to enhance coverage for concurrency and edge cases:
+
+### **Required Test Cases:**
+
+1. **Concurrent Bid Acceptance**
+   - Test scenario where multiple bids are accepted simultaneously on the same listing
+   - Verify that only one bid can be accepted and the listing status changes correctly
+   - Test race conditions in bid acceptance logic
+   - Ensure database consistency during concurrent operations
+
+2. **Database Transaction Failures During Updates**
+   - Simulate database connection failures during listing updates
+   - Test rollback scenarios when database operations fail
+   - Verify error handling and data consistency during failures
+   - Test recovery mechanisms
+
+3. **Concurrent Listing Updates by Same User**
+   - Test scenario where the same user updates a listing multiple times simultaneously
+   - Verify that updates are applied correctly and consistently
+   - Test for data corruption or lost updates
+   - Ensure proper event emission for all updates
+
+## Implementation Requirements
+
+### **Test Structure:**
+- Add these as **new test scenarios** within the existing 6 principles
+- Follow the same LikertSurvey format and naming conventions
+- Use the existing mock services and fake data infrastructure
+- Maintain compatibility with the current test suite
+
+### **Technical Requirements:**
+- Use **Promise.all()** or similar for concurrent operations
+- Implement **proper error handling** for database failures
+- Use **setTimeout()** or **Promise.race()** for timing-based tests
+- Ensure **database cleanup** after each test
+- Follow existing **assertion patterns** and error checking
+
+### **Test Data:**
+- Create additional fake data for concurrency scenarios
+- Use existing `fakeUserIds` and `fakeListingData` where possible
+- Generate multiple concurrent operations with realistic timing
+
+### **Expected Outcomes:**
+- **Concurrent Bid Acceptance**: Should handle race conditions gracefully
+- **Database Failures**: Should maintain data integrity and proper error reporting
+- **Concurrent Updates**: Should prevent data corruption and ensure consistency
+
+## Integration Notes
+- These tests should be added to the existing `ItemListingConcept.test.ts` file
+- Maintain the current test structure and organization
+- Ensure all new tests pass with the existing implementation
+- Use the same database connection and cleanup patterns
+
+Generate the additional test scenarios that can be integrated into the existing test suite without breaking current functionality.

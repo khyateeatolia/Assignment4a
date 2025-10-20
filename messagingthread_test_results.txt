@@ -1,0 +1,109 @@
+[0m[38;5;245mrunning 1 test from ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts[0m
+MessagingThreadConcept ...
+  1. Correctness ...
+    1.1 Should correctly start a new thread ... [0m[32mok[0m [0m[38;5;245m(772ms)[0m
+    1.2 Should correctly post a message to an existing thread ... [0m[32mok[0m [0m[38;5;245m(908ms)[0m
+    1.3 Should correctly flag a message and emit an event ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    1.4 Should correctly mark pickup as complete ... [0m[32mok[0m [0m[38;5;245m(968ms)[0m
+    1.5 Should retrieve thread by participant ... [0m[32mok[0m [0m[38;5;245m(764ms)[0m
+    1.6 Should retrieve messages in thread correctly ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+  1. Correctness ... [0m[32mok[0m [0m[38;5;245m(5s)[0m
+  2. Robustness ...
+    2.1 Should throw ThreadNotFoundError for non-existent thread ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    2.2 Should throw MessageNotFoundError for non-existent message ... [0m[32mok[0m [0m[38;5;245m(881ms)[0m
+    2.3 Should throw UserNotParticipantError if non-participant posts a message ... [0m[32mok[0m [0m[38;5;245m(741ms)[0m
+    2.4 Should throw UserNotParticipantError if non-participant marks pickup complete ... [0m[32mok[0m [0m[38;5;245m(866ms)[0m
+    2.5 Should throw InvalidInputError for empty message text ... [0m[32mok[0m [0m[38;5;245m(868ms)[0m
+    2.6 Should throw InvalidInputError for invalid attachment URLs ... [0m[32mok[0m [0m[38;5;245m(862ms)[0m
+    2.7 Should throw InvalidInputError for empty flagging reason ... [0m[32mok[0m [0m[38;5;245m(795ms)[0m
+    2.8 Should throw InvalidInputError for invalid ObjectId inputs ... [0m[32mok[0m [0m[38;5;245m(752ms)[0m
+    2.9 Should throw ListingOwnerNotFoundError if listing owner cannot be found ... [0m[32mok[0m [0m[38;5;245m(831ms)[0m
+    2.10 Should not allow posting to a completed thread ... [0m[32mok[0m [0m[38;5;245m(804ms)[0m
+    2.11 Should not allow marking pickup complete on a non-active thread ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    2.12 Should throw MessageThreadMismatchError if message does not belong to thread ... [0m[32mok[0m [0m[38;5;245m(823ms)[0m
+  2. Robustness ... [0m[32mok[0m [0m[38;5;245m(10s)[0m
+  3. Performance ...
+    3.1 `getThreadsByParticipant` should be efficient with participant index ... [0m[32mok[0m [0m[38;5;245m(976ms)[0m
+    3.2 `getMessagesInThread` should be efficient with threadId index ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    3.3 `getThread` by _id should be very fast ... [0m[32mok[0m [0m[38;5;245m(963ms)[0m
+    3.4 `flag_message` should be efficient with _id index on messages ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    3.5 `post_message` should be efficient (insert + update) ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+  3. Performance ... [0m[32mok[0m [0m[38;5;245m(5s)[0m
+  4. Usability ...
+    4.1 `start_thread` method signature is clear and requires essential parameters ... [0m[32mok[0m [0m[38;5;245m(727ms)[0m
+    4.2 `post_message` method clearly indicates sender, content, and thread context ... [0m[32mok[0m [0m[38;5;245m(789ms)[0m
+    4.3 `flag_message` provides clear parameters for intent and required information ... [0m[32mok[0m [0m[38;5;245m(814ms)[0m
+    4.4 Error messages are descriptive and helpful for debugging ... [0m[32mok[0m [0m[38;5;245m(755ms)[0m
+    4.5 Methods return meaningful values (IDs) or void for success ... [0m[32mok[0m [0m[38;5;245m(976ms)[0m
+  4. Usability ... [0m[32mok[0m [0m[38;5;245m(4s)[0m
+  5. Maintainability ...
+    5.1 Code is organized into logical files (concept, errors, mocks, fake-data, types) ... [0m[32mok[0m [0m[38;5;245m(630ms)[0m
+    5.2 Custom error classes provide clear hierarchy and specific error types ... [0m[32mok[0m [0m[38;5;245m(695ms)[0m
+    5.3 Dependencies are injected (EventBus, ListingService, Db) promoting modularity ... [0m[32mok[0m [0m[38;5;245m(654ms)[0m
+    5.4 Input validation is encapsulated in private helper methods ... [0m[32mok[0m [0m[38;5;245m(708ms)[0m
+  5. Maintainability ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+  6. Testability ...
+    6.1 Mock EventBus correctly captures emitted events ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+    6.2 Mock ListingService correctly returns configured listing owners ...
+[0m[38;5;245m------- output -------[0m
+MessagingThreadConcept: Index creation failed (may already exist): MongoServerError: Index build failed: 354f5bdc-bdbd-499f-bf58-b08b8a77e843: Collection test-assignment4a.messages ( 420bd871-4034-432c-89e5-199997a570e2 ) :: caused by :: Collection test-assignment4a.messages(420bd871-4034-432c-89e5-199997a570e2) is being dropped
+    at Connection.sendCommand (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/cmap/connection.js:290:27)
+    at eventLoopTick (ext:core/01_core.js:179:7)
+    at async Connection.command (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/cmap/connection.js:317:26)
+    at async Server.command (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/sdam/server.js:167:29)
+    at async CreateIndexesOperation.executeCommand (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/operations/command.js:73:16)
+    at async CreateIndexesOperation.execute (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/operations/indexes.js:122:9)
+    at async tryOperation (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/operations/execute_operation.js:199:20)
+    at async executeOperation (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/operations/execute_operation.js:69:16)
+    at async Collection.createIndex (file:///Users/khyateeatolia/Library/Caches/deno/npm/registry.npmjs.org/mongodb/6.10.0/lib/collection.js:326:25)
+    at async MessagingThreadConcept.initializeIndexes (file:///Users/khyateeatolia/Software Design/Assignment_4a/Assignment4a/src/concepts/MessagingThread/MessagingThreadConcept.ts:63:13) {
+  errorResponse: {
+    ok: [33m0[39m,
+    errmsg: [32m"Index build failed: 354f5bdc-bdbd-499f-bf58-b08b8a77e843: Collection test-assignment4a.messages ( 420bd871-4034-432c-89e5-199997a570e2 ) :: caused by :: Collection test-assignment4a.messages(420bd871-4034-432c-89e5-199997a570e2) is being dropped"[39m,
+    code: [33m276[39m,
+    codeName: [32m"IndexBuildAborted"[39m,
+    [32m"$clusterTime"[39m: {
+      clusterTime: new Timestamp({ t: [33m1760913128[39m, i: [33m26[39m }),
+      signature: {
+        hash: Binary.createFromBase64([32m"wTU+ssafnyV26ygnIatiuLGtGNc="[39m, [33m0[39m),
+        keyId: new Long([32m"7506213274048790544"[39m)
+      }
+    },
+    operationTime: new Timestamp({ t: [33m1760913128[39m, i: [33m25[39m })
+  },
+  ok: [33m0[39m,
+  code: [33m276[39m,
+  codeName: [32m"IndexBuildAborted"[39m,
+  [32m"$clusterTime"[39m: {
+    clusterTime: new Timestamp({ t: [33m1760913128[39m, i: [33m26[39m }),
+    signature: {
+      hash: Binary.createFromBase64([32m"wTU+ssafnyV26ygnIatiuLGtGNc="[39m, [33m0[39m),
+      keyId: new Long([32m"7506213274048790544"[39m)
+    }
+  },
+  operationTime: new Timestamp({ t: [33m1760913128[39m, i: [33m25[39m }),
+  [[32mSymbol(errorLabels)[39m]: Set(0) {}
+}
+[0m[38;5;245m----- output end -----[0m
+    6.2 Mock ListingService correctly returns configured listing owners ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    6.3 Database setup and cleanup utilities work as expected ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+    6.4 Test data generation utilities create valid and predictable data ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+  6. Testability ... [0m[32mok[0m [0m[38;5;245m(7s)[0m
+MessagingThreadConcept ... [0m[31mFAILED[0m [0m[38;5;245m(35s)[0m
+
+[0m[1m[37m[41m ERRORS [0m
+
+MessagingThreadConcept [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:34:1[0m
+[0m[1m[31merror[0m: Leaks detected:
+  - 24 async calls to op_read were started in this test, but never completed.
+  - 24 timers were started in this test, but never completed. This is often caused by not calling `clearTimeout`.
+  - A TLS connection was opened/accepted during the test, but not closed during the test. Close the TLS connection by calling `tlsConn.close()`.
+To get more details where leaks occurred, run again with the --trace-leaks flag.
+
+[0m[1m[37m[41m FAILURES [0m
+
+MessagingThreadConcept [0m[38;5;245m=> ./src/concepts/MessagingThread/MessagingThreadConcept.test.ts:34:1[0m
+
+[0m[31mFAILED[0m | 0 passed (42 steps) | 1 failed [0m[38;5;245m(35s)[0m
+
+[0m[1m[31merror[0m: Test failed
